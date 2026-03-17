@@ -58,10 +58,10 @@ const player = {
   x: W/2, y: H/2,
   radius: 18,
   speed: 4.5,
-  health: 200,
+  health: 100,
   score: 0,
-  ammo: 50,
-  maxAmmo: 50,
+  ammo: 30,
+  maxAmmo: 30,
   reloadTime: 0,
   color: '#0af'
 };
@@ -386,12 +386,12 @@ function gameLoop(time) {
   waveTimer += dt;
   if((bots.length === 0 && waveTimer > 60) || waveTimer > 1200){
     wave++;
-    botsToSpawn = 12 + wave*6;
+    botsToSpawn = 3 + wave*6;
     document.getElementById('waveNum').textContent = wave;
     document.getElementById('waveBig').textContent = wave;
 
     for(let i=0; i<botsToSpawn; i++){
-      const type = i%7===0 ? 'tank' : i%4===0 ? 'fast' : 'normal';
+      const type = i%4===0 ? 'tank' : i%3===0 ? 'fast' : 'normal';
       setTimeout(()=>spawnBot(type), i*80);
     }
     waveTimer = 0;
